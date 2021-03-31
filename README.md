@@ -11,5 +11,7 @@ URL-Shortener will be built using the following technologies:
 - Docker
 
 Progress on this project can be seen on the [Trello] board
+User stories can be viewed on the [Miro] board
 
 [Trello]: <https://trello.com/b/XV99y2JP>
+[Miro]: https://miro.com/app/board/o9J_lMOnXfU=/
