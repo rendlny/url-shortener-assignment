@@ -5,9 +5,9 @@ That shortened URL will redirect to the complete URL.
 
 ## Tech
 URL-Shortener will be built using the following technologies:
-- Java
-- Spring
-- Maven
+- Java 16
+- Spring 2.4.4
+- Maven 3.6.3
 - Docker
 
 Progress on this project can be seen on the [Trello] board
