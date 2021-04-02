@@ -46,11 +46,17 @@ public class LinkController {
     @GetMapping("/links")
     public String getLinks() throws FileNotFoundException, JsonMappingException, JsonProcessingException {
         File file = new File("target/link.json");
-        Scanner scanner = new Scanner(file).useDelimiter("\\Z");
-        String jsonFileContent = scanner.next();
-        scanner.close();
-        //final ObjectMapper objectMapper = new ObjectMapper();
-        //Link[] links = objectMapper.readValue(jsonFileContent, Link[].class);
+        String jsonFileContent;
+        if(file.exists()){
+            Scanner scanner = new Scanner(file).useDelimiter("\\Z");
+            jsonFileContent = scanner.next();
+            scanner.close();
+            //final ObjectMapper objectMapper = new ObjectMapper();
+            //Link[] links = objectMapper.readValue(jsonFileContent, Link[].class);
+        }else{
+            jsonFileContent = "No links";
+        }
+        
         return jsonFileContent;
     }
 
