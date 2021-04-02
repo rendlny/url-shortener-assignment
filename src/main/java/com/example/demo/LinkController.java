@@ -11,10 +11,13 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,19 +30,15 @@ public class LinkController {
 
     @PostMapping("/shorten-link")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Link addLink(@RequestBody Link link) throws JsonMappingException, JsonProcessingException {
+    public Link addLink(@RequestBody Link link) throws IOException {
         String shortLink = link.generateShortLink();
-        //if link not unique, loop until unique short-link generated
-        //while(checkLinkIsUnique(shortLink) == false){
+        //if link not unique, loop until a unique short-link is generated
+        while(checkLinkIsUnique(shortLink) == false){
            shortLink = link.generateShortLink();
-        //}
-        Link newLink = new Link(counter.incrementAndGet(), link.getName(), link.getLink(), shortLink);
-        try {
-            saveLinkToFile(newLink);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
+        Link newLink = new Link(counter.incrementAndGet(), link.getName(), link.getLink(), shortLink);
+        saveLinkToFile(newLink);
+      
 		return newLink;
 	}
 
@@ -60,6 +59,27 @@ public class LinkController {
         return jsonFileContent;
     }
 
+    @GetMapping("/{shortLink}")
+    public RedirectView linkRedirect(@PathVariable String shortLink, RedirectAttributes attributes) throws FileNotFoundException, JsonMappingException, JsonProcessingException {
+        String fullLink = "";
+
+        //get list of links from json file
+        Link[] links = getLinkListFromJson();
+
+        //loop through links to find the short link being accessed
+        for (Link link : links) {
+            if((link.getShortLink()).equals("http://localhost:8080/"+shortLink)){
+                //grab the full link the matching Link object
+                fullLink = link.getLink();
+                break;
+            }
+        }
+
+        //redirect to full link
+        return new RedirectView(fullLink);
+    }
+
+    //format Link object to json and add to link.json file
     public Link saveLinkToFile(Link link) throws JsonGenerationException, JsonMappingException, IOException{
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("target/link.json");
@@ -89,31 +109,33 @@ public class LinkController {
         return link;
     }
 
-    public boolean checkLinkIsUnique(String shortLink) throws JsonMappingException, JsonProcessingException{
+    public boolean checkLinkIsUnique(String shortLink) throws JsonMappingException, JsonProcessingException, FileNotFoundException{
         Boolean result = true;
-        //pull Link objects from links.json
-        File file = new File("target/link.json");
-        String jsonFromFile;
-        try {
-            Scanner scanner = new Scanner(file).useDelimiter("\\Z");
-            jsonFromFile = scanner.next();
-            scanner.close();
-            final ObjectMapper objectMapper = new ObjectMapper();
-            Link[] links = objectMapper.readValue(jsonFromFile, Link[].class);
-            
-            //loop through existing links to check this short-link doesn't match
-            for (Link link : links) {
-                if(link.getShortLink() == shortLink){
-                    result = false;
-                    break;
-                }
+    
+        //get list of links from json file
+        Link[] links = getLinkListFromJson();
+        
+        //loop through existing links to check this short-link doesn't match
+        for (Link link : links) {
+            if((link.getShortLink()).equals(shortLink)){
+                result = false;
+                break;
             }
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
 
         return result;
+    }
+
+    //Generate a Link[] list from the link.json file
+    public Link[] getLinkListFromJson() throws FileNotFoundException, JsonMappingException, JsonProcessingException{
+        //pull Link objects from link.json
+        File file = new File("target/link.json");
+        Scanner scanner = new Scanner(file).useDelimiter("\\Z");
+        String jsonFromFile = scanner.next();
+        scanner.close();
+        
+        //map json file data into List of Link objects
+        final ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(jsonFromFile, Link[].class);
     }
 }

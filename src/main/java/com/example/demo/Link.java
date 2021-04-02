@@ -11,6 +11,16 @@ public class Link {
     private final String createdAt;
     private String editedAt;
 
+    public Link() {
+        this.id = 0;
+        this.name = null;
+        this.link = null;
+        this.shortLink = null;
+        this.clickCount = 1;
+        this.createdAt = ZonedDateTime.now().toString();
+        this.editedAt = ZonedDateTime.now().toString();
+    }
+
     public Link(long id, String name, String link, String shortLink) {
         this.id = id;
         this.name = name;

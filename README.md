@@ -2,6 +2,20 @@
 URL Shortener will allow users to pass a long URL and will be given a shortened URL.
 That shortened URL will redirect to the complete URL.
 
+## Requests
+| METHOD | URL | DESC |
+| ------ | ------ | ------ |
+| POST | /shorten-link | Takes JSON object(```{"link": "https://example-link.com"}```), generates unique short-link and saves it to the system |
+| GET | /links | Returns full list of links stored on system |
+| GET | /{short-link} | Redirects from the provided short-link to the corresponding full-link |
+
+## Docker
+Run the Docker image
+```docker run -it -p8080:8080 demo:0.0.1-SNAPSHOT```
+
+App will be running at
+```localhost:8080```
+
 ## Tech
 URL-Shortener will be built using the following technologies:
 - Java 16
