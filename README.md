@@ -9,6 +9,10 @@ That shortened URL will redirect to the complete URL.
 | GET | /links | Returns full list of links stored on system |
 | GET | /{short-link} | Redirects from the provided short-link to the corresponding full-link |
 
+## Maven Spring Boot
+Run the app
+```./mvnw spring-boot:run```
+
 ## Docker
 Build the Docker image
 ```./mvnw spring-boot:build-image```
