@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  urlshortenerassignment:
+    image: urlshortenerassignment
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
