@@ -84,6 +84,17 @@ public class LinkController {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("target/link.json");
         String jsonFormatting = null;
+
+        //if folder does not exist, create it
+        File folder = new File("target");
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
+
+        if(!file.exists()){
+            file = new File("target/link.json");
+            file.createNewFile();
+        }
         
         if(file.length() == 0){ // empty file, add starting square bracket
             jsonFormatting = "[";
@@ -111,15 +122,19 @@ public class LinkController {
 
     public boolean checkLinkIsUnique(String shortLink) throws JsonMappingException, JsonProcessingException, FileNotFoundException{
         Boolean result = true;
-    
-        //get list of links from json file
-        Link[] links = getLinkListFromJson();
-        
-        //loop through existing links to check this short-link doesn't match
-        for (Link link : links) {
-            if((link.getShortLink()).equals(shortLink)){
-                result = false;
-                break;
+
+        //if file doesn't exist yet, link is unique
+        File file = new File("target/link.json");
+        if(file.exists() && file.length() > 0){
+            //get list of links from json file
+            Link[] links = getLinkListFromJson();
+                    
+            //loop through existing links to check this short-link doesn't match
+            for (Link link : links) {
+                if((link.getShortLink()).equals(shortLink)){
+                    result = false;
+                    break;
+                }
             }
         }
 

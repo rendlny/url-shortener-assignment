@@ -10,6 +10,9 @@ That shortened URL will redirect to the complete URL.
 | GET | /{short-link} | Redirects from the provided short-link to the corresponding full-link |
 
 ## Docker
+Build the Docker image
+```./mvnw spring-boot:build-image```
+
 Run the Docker image
 ```docker run -it -p8080:8080 demo:0.0.1-SNAPSHOT```
 
