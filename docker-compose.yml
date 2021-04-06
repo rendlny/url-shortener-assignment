@@ -2,8 +2,8 @@ version: '3.4'
 
 services:
   url-shortener-app:
-    build: ./url-shortener-app/
-    container_name: url-shortener-app
+    build: ./url-shortener-api
+    container_name: url-shortener-api
     ports:
       - 8080:8080
   

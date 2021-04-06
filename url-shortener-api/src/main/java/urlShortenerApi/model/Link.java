@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package urlShortenerApi.model;
 
 import java.time.ZonedDateTime;
 

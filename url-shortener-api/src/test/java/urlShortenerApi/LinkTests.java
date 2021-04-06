@@ -1,4 +1,4 @@
-package com.example.demo;
+package urlShortenerApi;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 
-import com.example.demo.controller.LinkController;
-import com.example.demo.model.Link;
+import urlShortenerApi.controller.LinkController;
+import urlShortenerApi.model.Link;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.jayway.jsonpath.internal.Path;

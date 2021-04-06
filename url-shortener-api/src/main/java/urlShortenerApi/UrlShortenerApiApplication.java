@@ -1,13 +1,13 @@
-package com.example.demo;
+package urlShortenerApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UrlShortenerAssignmentApplication {
+public class UrlShortenerApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UrlShortenerAssignmentApplication.class, args);
+		SpringApplication.run(UrlShortenerApiApplication.class, args);
 	}
 
 }

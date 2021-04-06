@@ -14,7 +14,7 @@ User stories & UML diagrams can be viewed on the [Miro] board
 
 ## API
 The api is built with Maven Spring Boot  
-```cd url-shortener-app```  
+```cd url-shortener-api```  
 ```./mvnw spring-boot:run```
 
 ## UI
@@ -24,7 +24,7 @@ The ui is built in AngularJS.
 
 ## Docker
 Build the API Docker image  
-```./mvnw spring-boot:build-image```
+```mvn spring-boot:build-image```
 
 Run the API Docker image  
 ```docker run -it -p 8080:8080 demo:0.0.1-SNAPSHOT```
