@@ -10,36 +10,36 @@ That shortened URL will redirect to the complete URL.
 | GET | /{short-link} | Redirects from the provided short-link to the corresponding full-link |
 
 ## API
-The api is built with Maven Spring Boot
-```cd url-shortener-app```
+The api is built with Maven Spring Boot  
+```cd url-shortener-app```  
 ```./mvnw spring-boot:run```
 
 ## UI
-The ui is built in AngularJS.
-```cd url-shortener-ui```
+The ui is built in AngularJS.  
+```cd url-shortener-ui```  
 ```ng serve```
 
 ## Docker
-Build the API Docker image
+Build the API Docker image  
 ```./mvnw spring-boot:build-image```
 
-Run the API Docker image
+Run the API Docker image  
 ```docker run -it -p 8080:8080 demo:0.0.1-SNAPSHOT```
 
-API will be running at
+API will be running at  
 ```localhost:8080```  
 
-Build the UI Docker image
+Build the UI Docker image  
 ```docker build -t url-shortener-ui .```
 
-Run the UI Docker image
+Run the UI Docker image  
 ```docker run -d -p 80:80 url-shortener-ui```
 
-UI will be running at
+UI will be running at  
 ```localhost:80```
 
 ## Tech
-URL-Shortener-api is built using the following technologies:
+url-Shortener-api was built using:
 - Java 16
 - Spring 2.4.4
 - Maven 3.6.3
@@ -47,7 +47,7 @@ URL-Shortener-api is built using the following technologies:
 - jackson 2.12.2
 - Docker  
   
-URL-shortener-ui is built 
+url-shortener-ui was built using:
 - AngularJS
 - Tailwind CSS
 
