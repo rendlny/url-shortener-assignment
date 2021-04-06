@@ -12,5 +12,3 @@ services:
     container_name: url-shortener-ui
     ports: 
       - 4200:80
-    links:
-      - url-shortener-app

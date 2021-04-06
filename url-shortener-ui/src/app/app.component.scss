@@ -1,0 +1,19 @@
+.btn {
+   @apply w-full py-3 font-bold border-2 rounded-md my-3 min-w-full focus:ring-2 focus:ring-yellow-900 focus:border-transparent shadow-lg
+}
+
+.yellow-btn {
+    @apply bg-yellow-600 hover:bg-yellow-700 border-yellow-400 text-white
+ }
+ 
+.blue-btn {
+    @apply bg-blue-500 hover:bg-blue-600 border-blue-400 text-white 
+}
+
+.text-input {
+    @apply px-2 py-2 border-2 rounded-md border-gray-200 focus:outline-none focus:ring-1 focus:ring-yellow-600 focus:border-transparent
+}
+
+.banner {
+    @apply py-6 px-14 bg-gradient-to-tr from-yellow-700 to-yellow-400 rounded-tl-2xl rounded-tr-2xl text-center space-y-8
+}

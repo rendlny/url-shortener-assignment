@@ -35,7 +35,7 @@ URL-Shortener-api is built using the following technologies:
 - jackson 2.12.2
 - Docker
 URL-shortener-ui is built 
-- Angular-JS
+- AngularJS
 - Tailwind CSS
 
 Progress on this project can be seen on the [Trello] board  
