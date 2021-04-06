@@ -33,7 +33,7 @@ URL-Shortener-api is built using the following technologies:
 - Maven 3.6.3
 - JUnit 5.7.0
 - jackson 2.12.2
-- Docker
+- Docker  
 URL-shortener-ui is built 
 - AngularJS
 - Tailwind CSS
