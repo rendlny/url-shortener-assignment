@@ -1,6 +1,9 @@
 # URL Shortener
 URL Shortener will allow users to pass a long URL and will be given a shortened URL.
-That shortened URL will redirect to the complete URL.
+That shortened URL will redirect to the complete URL.  
+
+Progress on this project can be seen on the [Trello] board  
+User stories & UML diagrams can be viewed on the [Miro] board
 
 ## Requests
 | METHOD | URL | DESCRIPTION |
@@ -50,9 +53,6 @@ url-Shortener-api was built using:
 url-shortener-ui was built using:
 - AngularJS
 - Tailwind CSS
-
-Progress on this project can be seen on the [Trello] board  
-User stories & UML diagrams can be viewed on the [Miro] board
 
 [Trello]: <https://trello.com/b/XV99y2JP>
 [Miro]: https://miro.com/app/board/o9J_lMOnXfU=/
