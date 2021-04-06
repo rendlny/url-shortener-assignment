@@ -9,22 +9,34 @@ That shortened URL will redirect to the complete URL.
 | GET | /links | Returns full list of links stored on system |
 | GET | /{short-link} | Redirects from the provided short-link to the corresponding full-link |
 
-## Maven Spring Boot
-Run the api
+## API
+The api is built with Maven Spring Boot
+```cd url-shortener-app```
 ```./mvnw spring-boot:run```
 
-Run the ui
-```grunt serve```
+## UI
+The ui is built in AngularJS.
+```cd url-shortener-ui```
+```ng serve```
 
 ## Docker
-Build the Docker image
+Build the API Docker image
 ```./mvnw spring-boot:build-image```
 
-Run the Docker image
-```docker run -it -p8080:8080 demo:0.0.1-SNAPSHOT```
+Run the API Docker image
+```docker run -it -p 8080:8080 demo:0.0.1-SNAPSHOT```
 
-App will be running at
-```localhost:8080```
+API will be running at
+```localhost:8080```  
+
+Build the UI Docker image
+```docker build -t url-shortener-ui .```
+
+Run the UI Docker image
+```docker run -d -p 80:80 url-shortener-ui```
+
+UI will be running at
+```localhost:80```
 
 ## Tech
 URL-Shortener-api is built using the following technologies:
@@ -34,6 +46,7 @@ URL-Shortener-api is built using the following technologies:
 - JUnit 5.7.0
 - jackson 2.12.2
 - Docker  
+  
 URL-shortener-ui is built 
 - AngularJS
 - Tailwind CSS
