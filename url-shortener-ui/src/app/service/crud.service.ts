@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class CrudService {
 
   // API
-  REST_API: string = 'http://localhost:8080/';
+  REST_API: string = '127.0.0.1:8080/';
 
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
@@ -19,8 +19,8 @@ export class CrudService {
   constructor(private httpClient: HttpClient) { }
 
   // Add
-  AddLink(data: Link): Observable<any> {
-    let API_URL = `${this.REST_API}/shorten-link`;
+  addLink(data: Link): Observable<any> {
+    let API_URL = `${this.REST_API}shorten-link`;
     return this.httpClient.post(API_URL, data)
       .pipe(
         catchError(this.handleError)
@@ -28,13 +28,14 @@ export class CrudService {
   }
 
   // Get all objects
-  GetLinks() {
-    return this.httpClient.get(`${this.REST_API}`+'/links');
+  getLinks() {
+    console.log('TEST');
+    return this.httpClient.get(`${this.REST_API}links`);
   }
 
   // Get single object
-  GetLink(shortLink:any): Observable<any> {
-    let API_URL = `${this.REST_API}/link/${shortLink}`;
+  getLink(shortLink:any): Observable<any> {
+    let API_URL = `${this.REST_API}link/${shortLink}`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
       .pipe(map((res: any) => {
           return res || {}

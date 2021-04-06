@@ -14,7 +14,7 @@ export class LinkListComponent implements OnInit {
   constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
-    this.crudService.GetLinks().subscribe(res => {
+    this.crudService.getLinks().subscribe(res => {
       console.log(res)
       this.Links = res;
     });  

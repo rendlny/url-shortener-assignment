@@ -13,8 +13,7 @@ export class HomeComponent {
   constructor(private crudService: CrudService) { }
 
   getAll() {
-    this.crudService.GetLinks().subscribe((results: any[]) => {
-      console.log('Data is received - Result - ', results);
+    this.crudService.getLinks().subscribe((results: any[]) => {
       this.links = results;
     })
   }

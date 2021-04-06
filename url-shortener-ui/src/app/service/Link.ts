@@ -1,5 +1,5 @@
 export class Link {
-    _id!: String;
+    id!: String;
     name!: String;
     link!: String;
     shortLink!: String;
