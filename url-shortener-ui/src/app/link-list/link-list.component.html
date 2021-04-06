@@ -1,0 +1,28 @@
+<div class="flex items-center justify-center mt-10">
+    <div class="flex flex-col shadow-xl md:w-2/3 xs:w-auto">
+        <div class="banner">
+            <h4 class="text-white text-center font-bold text-3xl">
+                Links List
+            </h4>
+        </div>
+
+        <div class="flex flex-col py-6 px-8 space-y-5 bg-white">
+
+            <table class="table-auto shadow-lg bg-white w-full">
+                <thead>
+                    <tr>
+                        <th scope="col" class="table-head">Id</th>
+                        <th scope="col" class="table-head">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let link of Links; let i = index" class="table-row">
+                        <th scope="row">{{link._id}}</th>
+                        <td>{{link.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
