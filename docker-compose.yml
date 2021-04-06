@@ -1,10 +1,16 @@
 version: '3.4'
 
 services:
-  urlshortenerassignment:
-    image: urlshortenerassignment
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  url-shortener-app:
+    build: ./url-shortener-app/
+    container_name: url-shortener-app
     ports:
       - 8080:8080
+  
+  url-shortener-ui:
+    build: ./url-shortener-ui
+    container_name: url-shortener-ui
+    ports: 
+      - 4200:80
+    links:
+      - url-shortener-app

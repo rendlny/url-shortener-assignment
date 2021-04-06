@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.demo.model.Link;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 @RestController
 public class LinkController {
 
@@ -33,11 +35,11 @@ public class LinkController {
     public Link addLink(@RequestBody Link link) throws IOException {
         String shortLink = link.generateShortLink();
         //if link not unique, loop until a unique short-link is generated
-        while(checkLinkIsUnique(shortLink) == false){
+        while(checkLinkIsUnique(shortLink, "link.json") == false){
            shortLink = link.generateShortLink();
         }
         Link newLink = new Link(counter.incrementAndGet(), link.getName(), link.getLink(), shortLink);
-        saveLinkToFile(newLink);
+        saveLinkToFile(newLink, "link.json");
       
 		return newLink;
 	}
@@ -80,9 +82,9 @@ public class LinkController {
     }
 
     //format Link object to json and add to link.json file
-    public Link saveLinkToFile(Link link) throws JsonGenerationException, JsonMappingException, IOException{
+    public Link saveLinkToFile(Link link, String fileName) throws JsonGenerationException, JsonMappingException, IOException{
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File("target/link.json");
+        File file = new File("target/"+fileName);
         String jsonFormatting = null;
 
         //if folder does not exist, create it
@@ -92,7 +94,7 @@ public class LinkController {
         }
 
         if(!file.exists()){
-            file = new File("target/link.json");
+            file = new File("target/"+fileName);
             file.createNewFile();
         }
         
@@ -105,7 +107,7 @@ public class LinkController {
             String jsonFileContent = scanner.next();
             scanner.close();
             String withoutLastCharacter = jsonFileContent.substring(0, jsonFileContent.length() - 1);
-            FileWriter myWriter = new FileWriter("target/link.json");
+            FileWriter myWriter = new FileWriter("target/"+fileName);
             myWriter.write(withoutLastCharacter);
             myWriter.close();
         }
@@ -120,11 +122,11 @@ public class LinkController {
         return link;
     }
 
-    public boolean checkLinkIsUnique(String shortLink) throws JsonMappingException, JsonProcessingException, FileNotFoundException{
+    public boolean checkLinkIsUnique(String shortLink, String fileName) throws JsonMappingException, JsonProcessingException, FileNotFoundException{
         Boolean result = true;
 
         //if file doesn't exist yet, link is unique
-        File file = new File("target/link.json");
+        File file = new File("target/"+fileName);
         if(file.exists() && file.length() > 0){
             //get list of links from json file
             Link[] links = getLinkListFromJson();

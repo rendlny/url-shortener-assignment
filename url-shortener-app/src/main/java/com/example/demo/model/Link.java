@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import java.time.ZonedDateTime;
 
@@ -15,6 +15,16 @@ public class Link {
         this.id = 0;
         this.name = null;
         this.link = null;
+        this.shortLink = null;
+        this.clickCount = 1;
+        this.createdAt = ZonedDateTime.now().toString();
+        this.editedAt = ZonedDateTime.now().toString();
+    }
+
+    public Link(String link) {
+        this.id = 0;
+        this.name = null;
+        this.link = link;
         this.shortLink = null;
         this.clickCount = 1;
         this.createdAt = ZonedDateTime.now().toString();

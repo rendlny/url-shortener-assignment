@@ -10,8 +10,11 @@ That shortened URL will redirect to the complete URL.
 | GET | /{short-link} | Redirects from the provided short-link to the corresponding full-link |
 
 ## Maven Spring Boot
-Run the app
+Run the api
 ```./mvnw spring-boot:run```
+
+Run the ui
+```grunt serve```
 
 ## Docker
 Build the Docker image
@@ -24,13 +27,16 @@ App will be running at
 ```localhost:8080```
 
 ## Tech
-URL-Shortener is built using the following technologies:
+URL-Shortener-api is built using the following technologies:
 - Java 16
 - Spring 2.4.4
 - Maven 3.6.3
 - JUnit 5.7.0
 - jackson 2.12.2
 - Docker
+URL-shortener-ui is built 
+- Angular-JS
+- Tailwind CSS
 
 Progress on this project can be seen on the [Trello] board  
 User stories & UML diagrams can be viewed on the [Miro] board
