@@ -19,4 +19,6 @@
 FROM nginx:1.17.1-alpine
 # copy files from dist to nginxs html folder
 COPY /dist/url-shortener-ui /usr/share/nginx/html
+# Copy the default nginx.conf
+COPY /config/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
