@@ -27,7 +27,7 @@ Build the API Docker image
 ```mvn spring-boot:build-image```
 
 Run the API Docker image  
-```docker run -it -p 8080:8080 demo:0.0.1-SNAPSHOT```
+```docker run -it -p 8080:8080 url-shortener-api:0.0.1-SNAPSHOT```
 
 API will be running at  
 ```localhost:8080```  
@@ -43,12 +43,11 @@ UI will be running at
 
 ## Tech
 url-Shortener-api was built using:
-- Java 16
+- Java 11
 - Spring 2.4.4
 - Maven 3.6.3
 - JUnit 5.7.0
-- jackson 2.12.2
-- Docker  
+- H2 Database Engine
   
 url-shortener-ui was built using:
 - AngularJS
