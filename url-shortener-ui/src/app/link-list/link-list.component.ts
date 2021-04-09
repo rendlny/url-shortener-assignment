@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from './../service/crud.service';
+import { CrudService } from 'src/app/service/crud.service';
 
 @Component({
   selector: 'app-link-list',
@@ -9,15 +9,30 @@ import { CrudService } from './../service/crud.service';
 
 export class LinkListComponent implements OnInit {
 
-  Links:any = [];
+  links: any;
+  currentLinks = null;
 
   constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
-    this.crudService.getLinks().subscribe(res => {
-      console.log(res)
-      this.Links = res;
-    });  
+    this.retrieveLinks();  
+  }
+
+  retrieveLinks(): void {
+    this.crudService.getLinks()
+      .subscribe(
+        data => {
+          console.log(data._embedded.linkList);
+          this.links = data._embedded.linkList;
+        },
+        error => {
+          console.log(error);
+        }); 
+  }
+
+  refreshList(): void {
+    this.retrieveLinks();
+    this.currentLinks = null;
   }
 
 }

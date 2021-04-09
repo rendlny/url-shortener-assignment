@@ -3,9 +3,13 @@
 }
 
 .table-head {
-    @apply bg-blue-500 border text-left px-8 py-2 font-bold text-white text-lg
+    @apply bg-blue-500 border border-blue-700 text-center px-3 py-2 font-bold text-white text-lg
 }
 
 .table-row {
     @apply bg-blue-200
+}
+
+.column {
+    @apply border border-blue-400 px-3 text-center
 }

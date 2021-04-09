@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Link } from './Link';
-import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+
+import { Link } from './Link';
+
+const BASE_URL = 'http://localhost:8080/links';
 
 @Injectable({
   providedIn: 'root'
@@ -10,33 +13,28 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 export class CrudService {
 
-  // API
-  REST_API: string = '127.0.0.1:8080/';
-
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   // Add
   addLink(data: Link): Observable<any> {
-    let API_URL = `${this.REST_API}shorten-link`;
-    return this.httpClient.post(API_URL, data)
+    return this.http.post(BASE_URL, data)
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  // Get all objects
-  getLinks() {
-    console.log('TEST');
-    return this.httpClient.get(`${this.REST_API}links`);
+  // Get all links
+  getLinks(): Observable<any> {
+    return this.http.get(BASE_URL, {headers: this.httpHeaders});
   }
 
   // Get single object
   getLink(shortLink:any): Observable<any> {
-    let API_URL = `${this.REST_API}link/${shortLink}`;
-    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+    let API_URL = `${BASE_URL}link/${shortLink}`;
+    return this.http.get(API_URL, { headers: this.httpHeaders })
       .pipe(map((res: any) => {
           return res || {}
         }),
@@ -46,8 +44,8 @@ export class CrudService {
 
   // Update
   updateLink(id:any, data:any): Observable<any> {
-    let API_URL = `${this.REST_API}/update/${id}`;
-    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+    let API_URL = `${BASE_URL}/update/${id}`;
+    return this.http.put(API_URL, data, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )
@@ -55,8 +53,8 @@ export class CrudService {
 
   // Delete
   deleteLink(id:any): Observable<any> {
-    let API_URL = `${this.REST_API}/delete/${id}`;
-    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
+    let API_URL = `${BASE_URL}/delete/${id}`;
+    return this.http.delete(API_URL, { headers: this.httpHeaders}).pipe(
         catchError(this.handleError)
       )
   }

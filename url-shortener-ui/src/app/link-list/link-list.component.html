@@ -13,12 +13,21 @@
                     <tr>
                         <th scope="col" class="table-head">Id</th>
                         <th scope="col" class="table-head">Name</th>
+                        <th scope="col" class="table-head">Code</th>
+                        <th scope="col" class="table-head">Link</th>
+                        <th scope="col" class="table-head">Click Count</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let link of Links; let i = index" class="table-row">
-                        <th scope="row">{{link._id}}</th>
-                        <td>{{link.name}}</td>
+                    <tr
+                        *ngFor="let link of links; let i = index" 
+                        class="table-row bg-red-600"
+                    >
+                        <th class="column" scope="row">{{link.id}}</th>
+                        <td class="column">{{link.name}}</td>
+                        <td class="column">{{link.code}}</td>
+                        <td class="column"><a target="_blank" href="{{link.link}}">{{link.link}}</a></td>
+                        <td class="column">{{link.clickCount}}</td>
                     </tr>
                 </tbody>
             </table>

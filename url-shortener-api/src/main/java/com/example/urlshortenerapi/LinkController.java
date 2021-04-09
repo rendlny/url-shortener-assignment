@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class LinkController {
     }
 
     //CRUD Requests
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/links")
     CollectionModel<EntityModel<Link>> all() {
 
@@ -42,6 +44,7 @@ public class LinkController {
         return CollectionModel.of(links, linkTo(methodOn(LinkController.class).all()).withSelfRel());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/links")
     EntityModel<Link> newLink(@RequestBody Link newLink) {
         //make sure generated code is unique
@@ -51,7 +54,8 @@ public class LinkController {
         repository.save(newLink);
         return assembler.toModel(newLink);
     }
-  
+    
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/links/{id}")
     EntityModel<Link> one(@PathVariable Long id) {
         Link link = repository.findById(id)
@@ -60,6 +64,7 @@ public class LinkController {
         return assembler.toModel(link);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/links/{id}")
     ResponseEntity<?> replaceLink(@RequestBody Link newLink, @PathVariable Long id) {
         
@@ -85,6 +90,7 @@ public class LinkController {
    
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/links/{id}")
     ResponseEntity<?> deleteLink(@PathVariable Long id) {
         repository.deleteById(id);
@@ -93,6 +99,7 @@ public class LinkController {
     }
 
     //Redirecting to full link
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{code}")
     RedirectView redirectTest(@PathVariable String code, RedirectAttributes attributes) {
         //find link via code

@@ -15,7 +15,7 @@ User stories & UML diagrams can be viewed on the [Miro] board
 ## API
 The api is built with Maven Spring Boot  
 ```cd url-shortener-api```  
-```./mvnw spring-boot:run```  
+```./mvn spring-boot:run```  
 To run tests only:  
 ```mvn test```  
 
