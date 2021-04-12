@@ -105,6 +105,10 @@ public class LinkController {
         //find link via code
         Link link = repository.findByCode(code)
             .orElseThrow( () -> new LinkNotFoundException(code));
+        
+        //increase link's click count  
+        link.setClickCount(link.getClickCount()+1);
+        repository.save(link);
 
         //redirect to full link
         return new RedirectView(link.getLink());
