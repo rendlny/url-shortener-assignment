@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200"}, maxAge = 3600)
 @RestController
 public class LinkController {
     private final LinkRepository repository;
@@ -33,7 +35,6 @@ public class LinkController {
     }
 
     //CRUD Requests
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/links")
     CollectionModel<EntityModel<Link>> all() {
 
@@ -44,7 +45,6 @@ public class LinkController {
         return CollectionModel.of(links, linkTo(methodOn(LinkController.class).all()).withSelfRel());
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/links")
     EntityModel<Link> newLink(@RequestBody Link newLink) {
         //make sure generated code is unique
@@ -55,7 +55,6 @@ public class LinkController {
         return assembler.toModel(newLink);
     }
     
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/links/{id}")
     EntityModel<Link> one(@PathVariable Long id) {
         Link link = repository.findById(id)
@@ -64,7 +63,6 @@ public class LinkController {
         return assembler.toModel(link);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/links/{id}")
     ResponseEntity<?> replaceLink(@RequestBody Link newLink, @PathVariable Long id) {
         
@@ -90,7 +88,6 @@ public class LinkController {
    
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/links/{id}")
     ResponseEntity<?> deleteLink(@PathVariable Long id) {
         repository.deleteById(id);
@@ -99,7 +96,6 @@ public class LinkController {
     }
 
     //Redirecting to full link
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{code}")
     RedirectView redirectTest(@PathVariable String code, RedirectAttributes attributes) {
         //find link via code
