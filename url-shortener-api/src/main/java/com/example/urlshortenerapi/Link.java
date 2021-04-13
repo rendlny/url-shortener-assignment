@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Link {
     private @Id @GeneratedValue Long id;
     private String name;
-    private String link;
+    private String fullLink;
     private String code;
     private Integer clickCount;
     private String createdAt;
@@ -17,26 +17,26 @@ public class Link {
 
     public Link() {
         this.name = null;
-        this.link = null;
+        this.fullLink = null;
         this.code = null;
         this.clickCount = 1;
         this.createdAt = ZonedDateTime.now().toString();
         this.editedAt = ZonedDateTime.now().toString();
     }
 
-    public Link(String link) {
+    public Link(String fullLink) {
         this.name = null;
-        this.link = link;
+        this.fullLink = fullLink;
         this.clickCount = 1;
         this.createdAt = ZonedDateTime.now().toString();
         this.editedAt = ZonedDateTime.now().toString();
         this.generateCode();
     }
 
-    public Link(long id, String name, String link, String code) {
+    public Link(long id, String name, String fullLink, String code) {
         this.id = id;
         this.name = name;
-        this.link = link;
+        this.fullLink = fullLink;
         this.code = code;
         this.clickCount = 1;
         this.createdAt = ZonedDateTime.now().toString();
@@ -59,12 +59,12 @@ public class Link {
         this.name = name;
     }
 
-    public String getLink() {
-        return link;
+    public String getFullLink() {
+        return fullLink;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setFullLink(String fullLink) {
+        this.fullLink = fullLink;
     }
 
     public String getCode() {
@@ -126,7 +126,7 @@ public class Link {
 
     @Override
     public String toString(){
-        return "Link{" + "id=" + this.id + ", name='" + this.name + '\'' + ", link='" + this.link
+        return "Link{" + "id=" + this.id + ", name='" + this.name + '\'' + ", fullLink='" + this.fullLink
         + '\'' + ", code='" + this.code + '\'' + ", clickCount='" + this.clickCount 
         + '\'' + ", createdAt='" + this.createdAt + '\'' + ", editedAt='" + this.editedAt + '\'' + '}';
     }

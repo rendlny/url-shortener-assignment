@@ -25,8 +25,8 @@ class UrlShortenerApiApplicationTests {
         Assertions.assertTrue(link.getName().equals("test name"));
         
         //link
-        link.setLink("www.test.com");
-        Assertions.assertTrue(link.getLink().equals("www.test.com"));
+        link.setFullLink("www.test.com");
+        Assertions.assertTrue(link.getFullLink().equals("www.test.com"));
 
         //shortLink
         link.setCode("test");

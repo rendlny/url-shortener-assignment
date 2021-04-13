@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AddLinkComponent } from './add-link/add-link.component';
 import { LinkDetailComponent } from './link-detail/link-detail.component';
 import { LinkListComponent } from './link-list/link-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LinkListComponent } from './link-list/link-list.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

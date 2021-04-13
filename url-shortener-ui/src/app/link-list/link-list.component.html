@@ -14,7 +14,7 @@
                         <th scope="col" class="table-head">Id</th>
                         <th scope="col" class="table-head">Name</th>
                         <th scope="col" class="table-head">Code</th>
-                        <th scope="col" class="table-head">Link</th>
+                        <th scope="col" class="table-head">Full Link</th>
                         <th scope="col" class="table-head">Click Count</th>
                     </tr>
                 </thead>
@@ -26,7 +26,7 @@
                         <th class="column" scope="row">{{link.id}}</th>
                         <td class="column">{{link.name}}</td>
                         <td class="column">{{link.code}}</td>
-                        <td class="column"><a target="_blank" href="{{link.link}}">{{link.link}}</a></td>
+                        <td class="column"><a target="_blank" href="{{link.fullLink}}">{{link.fullLink}}</a></td>
                         <td class="column">{{link.clickCount}}</td>
                     </tr>
                 </tbody>

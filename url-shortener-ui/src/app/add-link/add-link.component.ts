@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CrudService } from 'src/app/service/crud.service';
 
 @Component({
   selector: 'app-add-link',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddLinkComponent implements OnInit {
 
-  constructor() { }
+  link = null;
+  constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
   }
-
+  
 }

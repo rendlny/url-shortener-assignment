@@ -69,7 +69,7 @@ public class LinkController {
         Link updatedLink = repository.findById(id)
         .map(link -> {
             link.setName(newLink.getName());
-            link.setLink(newLink.getLink());
+            link.setFullLink(newLink.getFullLink());
             link.setCode(newLink.getCode());
             link.setClickCount(newLink.getClickCount());
             link.setCreatedAt(newLink.getCreatedAt());
@@ -107,7 +107,7 @@ public class LinkController {
         repository.save(link);
 
         //redirect to full link
-        return new RedirectView(link.getLink());
+        return new RedirectView(link.getFullLink());
     }
 
     //
