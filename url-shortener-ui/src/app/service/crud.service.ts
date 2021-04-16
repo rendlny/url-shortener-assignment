@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
+import { GlobalVariable } from 'src/app/global';
 
 import { Link } from './Link';
 
-const BASE_URL = 'http://localhost:8080/links';
+const BASE_URL = GlobalVariable.BASE_API_URL+"links";
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/service/crud.service';
+import { GlobalVariable } from 'src/app/global';
 
 @Component({
   selector: 'app-link-list',
@@ -11,6 +12,7 @@ export class LinkListComponent implements OnInit {
 
   links: any;
   currentLinks = null;
+  baseApiUrl = GlobalVariable.BASE_API_URL;
 
   constructor(private crudService: CrudService) { }
 
